@@ -1,18 +1,17 @@
-CREATE OR REPLACE VIEW vue_priorite_robots AS
+WITH contexte AS (
+  SELECT id_scenario, localisation
+  FROM scenarios
+  WHERE id_scenario = 3
+)
 SELECT
-    r.id_robot,
-    r.nom_robot,
-    r.modele,
-    r.etat,
-    mp.coefficient AS priorite_modele,
-    IFNULL(SUM(CASE WHEN a.resultat = 'succès' THEN 1 ELSE 0 END), 0) AS succes,
-    (
-        (mp.coefficient * 10)
-        + (IFNULL(SUM(CASE WHEN a.resultat = 'succès' THEN 1 ELSE 0 END), 0) * 5)
-        + (CASE WHEN r.etat = 'actif' THEN 50 ELSE 0 END)
-    ) AS score_priorite
-FROM robots r
-LEFT JOIN actions a ON a.id_robot = r.id_robot
-LEFT JOIN modele_priorite mp ON r.modele = mp.modele
-GROUP BY r.id_robot, r.nom_robot, r.modele, r.etat, mp.coefficient
-ORDER BY score_priorite DESC;
+  vpr.id_robot,
+  vpr.nom_robot,
+  vpr.score_priorite
+    + CASE WHEN r.localisation = (SELECT localisation FROM contexte) THEN 15 ELSE 0 END AS score_priorite_proximite,
+  r.localisation,
+  vpr.etat
+FROM vue_priorite_robots vpr
+JOIN robots r ON r.id_robot = vpr.id_robot
+WHERE vpr.etat = 'actif'
+ORDER BY score_priorite_proximite DESC
+LIMIT 5;

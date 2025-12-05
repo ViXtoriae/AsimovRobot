@@ -19,7 +19,7 @@ INSERT INTO humains VALUES
     (5, 'Ripley', 'élevée', 'Secteur Nostromo'),
     (6, 'Neo', 'moyenne', 'Matrix Hub'),
     (7, 'Leia', 'faible', 'Base Rebelle'),
-    (8, 'Sheldon', 'faible', 'Laboratoire Geek');
+    (8, 'Sheldon', 'faible', 'Laboratoire Physique');
 
 INSERT INTO scenarios VALUES
     (1, 'Humain inconscient + générateur instable', 1),

@@ -13,4 +13,3 @@ insert into robot_modeles_prio (modele, priorite_loi) values
     ('SWAstro', 1),
     ('Skynet', 3),
     ('PixarEVE', 2);
-    
