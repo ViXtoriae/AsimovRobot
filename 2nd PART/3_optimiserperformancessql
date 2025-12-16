@@ -12,11 +12,9 @@ FROM robots r
 LEFT JOIN actions a ON r.id_robot = a.id_robot
 GROUP BY r.id_robot;
 
--- Améliorer les performances
 CREATE INDEX idx_actions_id_robot ON actions(id_robot);
 CREATE INDEX idx_robots_etat ON robots(etat);
 
--- Après optimisation
 EXPLAIN
 SELECT
     r.id_robot,
@@ -29,3 +27,4 @@ SELECT
 FROM robots r
 LEFT JOIN actions a ON r.id_robot = a.id_robot
 GROUP BY r.id_robot;
+
