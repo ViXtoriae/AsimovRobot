@@ -1,4 +1,3 @@
--- Addition d'une colonne dans robots --
 ALTER TABLE robots ADD priorite_modele INT;
 
 UPDATE robots SET priorite_modele =
@@ -23,10 +22,8 @@ SELECT
     robot.modele,
     robot.etat,
 
-    -- Calcul du nbr d'interventions réussies
     IFNULL(SUM(CASE WHEN action.resultat = 'succès' THEN 1 ELSE 0 END), 0) AS succes,
 
-    --Calcul du score de priorite
     (
         (robot.priorite_modele * 10) +
         (IFNULL(SUM(CASE WHEN action.resultat = 'succès' THEN 1 ELSE 0 END), 0) * 5) +
