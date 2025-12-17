@@ -4,7 +4,7 @@ ALTER TABLE scenarios ADD COLUMN localisation VARCHAR(50) NOT NULL;
 ALTER TABLE robots ADD batterie INT CHECK (batterie BETWEEN 0 AND 100);
 
 
--- Modif values robots
+-- Modifications valeurs des robots
 UPDATE robots SET localisation = 'NeoCity', batterie = 85 WHERE id_robot = 1;   -- R-Pikachu
 UPDATE robots SET localisation = 'DômeCentral', batterie = 70 WHERE id_robot = 2; -- R-Link
 UPDATE robots SET localisation = 'LaboQuantique', batterie = 40 WHERE id_robot = 3; -- R-GammaRay
@@ -17,7 +17,7 @@ UPDATE robots SET localisation = 'NeoCity', batterie = 30 WHERE id_robot = 9;   
 UPDATE robots SET localisation = 'DômeCentral', batterie = 80 WHERE id_robot = 10; -- R-WallE
 
 
--- Modif values scenar
+-- Modifications valeurs des scenarios
 UPDATE scenarios SET localisation = 'NeoCity' WHERE id_scenario = 1;   -- Pokémon blessé + générateur warp instable
 UPDATE scenarios SET localisation = 'DômeCentral' WHERE id_scenario = 2; -- Collision Guardians Hylien
 UPDATE scenarios SET localisation = 'DômeCentral' WHERE id_scenario = 3; -- Fuite O2
