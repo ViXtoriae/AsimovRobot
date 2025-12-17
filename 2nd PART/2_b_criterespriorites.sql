@@ -3,7 +3,7 @@ SELECT
     robot.nom_robot,
     robot.modele,
     robot.etat,
-    
+
     IFNULL(SUM(CASE WHEN action.resultat = 'succès' THEN 1 ELSE 0 END), 0) AS succes,
     
     (robot.priorite_modele * 15)
@@ -12,6 +12,6 @@ SELECT
     AS nouveau_score
 
 FROM robots robot
-LEFT JOIN actions a ON rrobot.id_robot = action.id_robot
+LEFT JOIN actions a ON robot.id_robot = action.id_robot
 GROUP BY robot.id_robot
 ORDER BY nouveau_score DESC;

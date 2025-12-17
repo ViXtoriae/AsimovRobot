@@ -1,5 +1,6 @@
 -- add 'en intervention' --
-ALTER TABLE robots DROP CHECK robots_chk_1;
+ALTER TABLE robots MODIFY etat VARCHAR(20); --La ligne manquante pour implémenter le new statut--
+ALTER TABLE robots DROP constraint robots_chk_1;
 ALTER TABLE robots add constraint robots_chk_1 CHECK (etat IN ('actif', 'hors service', 'en panne', 'en intervention'));
 
 UPDATE robots
