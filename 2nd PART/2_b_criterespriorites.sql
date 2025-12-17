@@ -12,6 +12,6 @@ SELECT
     AS nouveau_score
 
 FROM robots robot
-LEFT JOIN actions a ON robot.id_robot = action.id_robot
+LEFT JOIN actions action ON robot.id_robot = action.id_robot
 GROUP BY robot.id_robot
 ORDER BY nouveau_score DESC;
